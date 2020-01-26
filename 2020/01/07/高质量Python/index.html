@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hello Hexo | Hexo</title>
+  <title>高质量Python | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="Hello Hexo">
-<meta property="og:url" content="http://yoursite.com/2019/10/07/Hello-Hexo/index.html">
+  <meta name="description" content="看完书不总结就会忘掉，写在自己的博客上吧，总结的书目是《编写高质量Python代码的59个有效方法》，但是我不想完全按照他的顺序讲，他讲的略微有些零碎，这里尽可能根据每个应用点进行总结，如果能按照顺序总结下来当然最好了hhh 关于迭代器生成迭代器有两种生成方式，一种是使用() 1(i+1 for i, x in enumerate(text) if x == &amp;apos; &amp;apos;)  生成一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高质量Python">
+<meta property="og:url" content="http://yoursite.com/2020/01/07/高质量Python/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="看完书不总结就会忘掉，写在自己的博客上吧，总结的书目是《编写高质量Python代码的59个有效方法》，但是我不想完全按照他的顺序讲，他讲的略微有些零碎，这里尽可能根据每个应用点进行总结，如果能按照顺序总结下来当然最好了hhh 关于迭代器生成迭代器有两种生成方式，一种是使用() 1(i+1 for i, x in enumerate(text) if x == &amp;apos; &amp;apos;)  生成一">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-06T16:05:42.403Z">
+<meta property="og:updated_time" content="2020-01-26T09:52:38.911Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello Hexo">
+<meta name="twitter:title" content="高质量Python">
+<meta name="twitter:description" content="看完书不总结就会忘掉，写在自己的博客上吧，总结的书目是《编写高质量Python代码的59个有效方法》，但是我不想完全按照他的顺序讲，他讲的略微有些零碎，这里尽可能根据每个应用点进行总结，如果能按照顺序总结下来当然最好了hhh 关于迭代器生成迭代器有两种生成方式，一种是使用() 1(i+1 for i, x in enumerate(text) if x == &amp;apos; &amp;apos;)  生成一">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -151,27 +154,55 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Hello-Hexo" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-高质量Python" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hello Hexo
+      高质量Python
     </h1>
   
 
         
-        <a href="/2019/10/07/Hello-Hexo/" class="archive-article-date">
-  	<time datetime="2019-10-06T16:05:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-07</time>
+        <a href="/2020/01/07/高质量Python/" class="archive-article-date">
+  	<time datetime="2020-01-07T04:02:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-07</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>看完书不总结就会忘掉，写在自己的博客上吧，总结的书目是《编写高质量Python代码的59个有效方法》，但是我不想完全按照他的顺序讲，他讲的略微有些零碎，这里尽可能根据每个应用点进行总结，如果能按照顺序总结下来当然最好了hhh</p>
+<h2 id="关于迭代器"><a href="#关于迭代器" class="headerlink" title="关于迭代器"></a>关于迭代器</h2><h3 id="生成"><a href="#生成" class="headerlink" title="生成"></a>生成</h3><p>迭代器有两种生成方式，一种是使用()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(i+1 for i, x in enumerate(text) if x == &apos; &apos;)</span><br></pre></td></tr></table></figure>
+
+<p>生成一些比较快速的还好，但是看起来其实挺丑的，不方便别人阅读。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index_words</span><span class="params">(text)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> index, letter <span class="keyword">in</span> enumerate(text):</span><br><span class="line">        <span class="keyword">if</span> letter == <span class="string">' '</span>:</span><br><span class="line">            <span class="keyword">yield</span> index+<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>对于上边生成的迭代器，可以用list转化</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result = list(index_word(address))</span><br></pre></td></tr></table></figure>
+
+<p>上述操作可以防止内存爆炸，就像pytorch里面的dataloader一样，这样就不会把所有的数据都存在内存里了……吧。</p>
+<h3 id="修改协议"><a href="#修改协议" class="headerlink" title="修改协议"></a>修改协议</h3><p>有的时候需要重复遍历迭代器的时候，比如取平均值需要先算一下总和再算一下平均值，上述的默认迭代器并不适用，因为迭代完一次之后就不会再有第二次迭代了。那么可以创建一个类，用__iter__功能来代替迭代器。举个栗子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ReadVisits</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, data_path)</span>:</span></span><br><span class="line">        self.data_path = data_path </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__iter__</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'begin iter'</span>)</span><br><span class="line">        <span class="keyword">with</span> open(self.data_path) <span class="keyword">as</span> f:</span><br><span class="line">            <span class="keyword">for</span> line <span class="keyword">in</span> f:</span><br><span class="line">                <span class="keyword">yield</span> int(line)</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码如果运行求取平均值的功能会发现输出了两次”begin iter”，也就是__iter__实际上是创建新的迭代器的意思，里面的才是迭代器。构思还挺精巧的，我猜一开始不是这么设计的2333</p>
+<h2 id="关于容器"><a href="#关于容器" class="headerlink" title="关于容器"></a>关于容器</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line">Q = defaultdict(<span class="keyword">lambda</span>:np.zeros(<span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+
+<p>可以创建的每个键对应的值都是5维的</p>
+<p>当然也可以写成多维的，实际上这个lambda函数的作用是给defaultdict中不存在的键对应的值赋一个量，创建了这个量之后就可以在其中赋值了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Q = defaultdict(<span class="keyword">lambda</span>:np.zeros((<span class="number">5</span>, <span class="number">3</span>)))</span><br></pre></td></tr></table></figure>
+
+<h2 id="类与继承"><a href="#类与继承" class="headerlink" title="类与继承"></a>类与继承</h2><h3 id="挂钩（hook）的使用"><a href="#挂钩（hook）的使用" class="headerlink" title="挂钩（hook）的使用"></a>挂钩（hook）的使用</h3><p>在python当中，函数是一级对象，意思是可以作为参数传递和引用。一般是内置的，比如对于sort可以通过lambda函数来指定其排序的根据；上边说的defaultdict的lambda函数作为传递也是一种hook，举个例子。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">log_missing</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'key added'</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">current = &#123;<span class="string">'green'</span>:<span class="number">12</span>, <span class="string">'blue'</span>:<span class="number">3</span>&#125;</span><br><span class="line">increments = [</span><br><span class="line">	(<span class="string">'red'</span>, <span class="number">5</span>),</span><br><span class="line">	(<span class="string">'blue'</span>, <span class="number">17</span>)</span><br><span class="line">]</span><br><span class="line">result = defaultdict(log_missing, current)</span><br><span class="line">print(<span class="string">'before:'</span>, dict(result))</span><br><span class="line"><span class="keyword">for</span> key, amount <span class="keyword">in</span> increments:</span><br><span class="line">	result[key] += amount</span><br><span class="line">print(<span class="string">'After:'</span>, dict(result))</span><br></pre></td></tr></table></figure>
+
+<p>上边的hook函数作用是：查询字典的时候，如果里面没有待查的键，就用这个函数为这个键创建一个新值。</p>
+<p>同时，为了希望记录某些中间变量，比如一共创建了几次新的键之类的，可以通过类来实现。当然，在类里面可以实现一个成员函数，但是不够巧妙，这里使用了__recall__函数，其作用是当我们使用这个类像一个函数的时候，模拟其行为。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CountMissing</span><span class="params">(object)</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">		self.added = <span class="number">0</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__recall__</span><span class="params">(self)</span>:</span></span><br><span class="line">		self.added += <span class="number">1</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">counter = CountMissing()</span><br><span class="line">result = defalutdict(counter, current)</span><br><span class="line"><span class="keyword">for</span> key, amount <span class="keyword">in</span> increments:</span><br><span class="line">    result[key] += amount</span><br><span class="line"><span class="keyword">assert</span> conter.added == <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+
       
 
       
@@ -250,7 +281,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/10/07/Hello-Hexo/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/01/07/高质量Python/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -264,18 +295,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/12/01/白嫖之路/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          白嫖之路
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/10/07/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2019/12/04/去雾/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">去雾</div>
       <i class="icon-circle-right"></i>
     </a>
   
