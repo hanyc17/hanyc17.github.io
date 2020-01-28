@@ -152,6 +152,107 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-record-of-github" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/28/record-of-github/">record of github</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/28/record-of-github/" class="archive-article-date">
+  	<time datetime="2020-01-28T07:07:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h1><p>实话说，我不觉得在vscode上使用git是一个很好用的方案，不如直接使用git命令行。这里需要明确的事情是，在本地使用的始终是git，包括源代码的管理之类的，上传到github上是另一个命令。接下来记录下来，关于git的安装和github的配置问题不再赘述：</p>
+<p>进入需要上传文件的目录输入命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+
+<p>这个举动是……我也不知道是干啥，接下来是创建一个本地仓库名字叫origin，使用命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@github.com:tingxueronghua/yourRepo.git</span><br><span class="line">git remote rm origin // 删除上边的地址，如果输错的话</span><br></pre></td></tr></table></figure>
+
+<p>接下来如果要添加一个文件到本地仓库，使用命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add xxx  // git add .</span><br></pre></td></tr></table></figure>
+
+<p>然后添加到本地的仓库，使用命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &apos;一个标记&apos;</span><br></pre></td></tr></table></figure>
+
+<p>如果需要添加到远程的github仓库，可以使用命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+
+<p>千万不要使用checkout可以回退到某个版本！！！！！！这会导致进入游离状态！！！！下面的千万不能用！！！！！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout commitID</span><br></pre></td></tr></table></figure>
+
+<p>正确的倒退版本的方法是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset #####</span><br></pre></td></tr></table></figure>
+
+<p>以及如果倒退回了旧的版本，想要用原来的比较新的版本的话，版本号依然是可以使用的，但是查找会比较麻烦，可以使用下式，看到的是自己版本切换的顺序。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reflog</span><br></pre></td></tr></table></figure>
+
+<h1 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h1><p>所谓进阶，对我来说就是指的branch和merge，首先是创建一个新的branch</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch BRANCH_NAME</span><br></pre></td></tr></table></figure>
+
+<p>然后是如何切换分支</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout BRANCH_NAME</span><br></pre></td></tr></table></figure>
+
+<p>或者新建并且直接切换到对应的分支上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">checkout -b BRANCH_NAME</span><br></pre></td></tr></table></figure>
+
+<p>然后，就是比较重要的合并分支了，从命令上讲其命令行为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge BRANCH_NAME</span><br></pre></td></tr></table></figure>
+
+<p>这里需要注意一件事情，首先是上边的merge指的是将后面的BRANCH_NAME里面的改动合并到当前的分支。一般情况下第一反应，我们使用这样的分支是因为我们需要在主要的工作中额外分开一个分支对自己想要进行修改的部分进行修正，修正结束后可以合并到master里面。但是并不一定只有一个人在做类似的操作，可能会出现在我们希望把自己的branch合并到master里面的时候，master里面已经有了一次更新。</p>
+<p>在上述情景中，问题出在两次修改是否冲突上。比如如果同时修改了其中的某一行，那么git表示不知道该听谁的，所以会报错让我们先修改一下再说。但是如果没有的话，就会自动进行合并。听起来还是不错的，以后再进行相应的验证。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/28/record-of-github/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-高质量Python" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -200,7 +301,7 @@
 <p>同时，为了希望记录某些中间变量，比如一共创建了几次新的键之类的，可以通过类来实现。当然，在类里面可以实现一个成员函数，但是不够巧妙，这里使用了__recall__函数，其作用是当我们使用这个类像一个函数的时候，模拟其行为。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CountMissing</span><span class="params">(object)</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">		self.added = <span class="number">0</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__recall__</span><span class="params">(self)</span>:</span></span><br><span class="line">		self.added += <span class="number">1</span></span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">counter = CountMissing()</span><br><span class="line">result = defalutdict(counter, current)</span><br><span class="line"><span class="keyword">for</span> key, amount <span class="keyword">in</span> increments:</span><br><span class="line">    result[key] += amount</span><br><span class="line"><span class="keyword">assert</span> conter.added == <span class="number">2</span></span><br></pre></td></tr></table></figure>
 
-
+<h3 id="classmethod的使用"><a href="#classmethod的使用" class="headerlink" title="@classmethod的使用"></a>@classmethod的使用</h3>
       
 
       
