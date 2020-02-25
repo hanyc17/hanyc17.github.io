@@ -152,6 +152,69 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-论文代码阅读" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/31/论文代码阅读/">论文代码阅读</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/31/论文代码阅读/" class="archive-article-date">
+  	<time datetime="2020-01-31T08:59:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="TSN算法的PyTorch代码解读"><a href="#TSN算法的PyTorch代码解读" class="headerlink" title="TSN算法的PyTorch代码解读"></a>TSN算法的PyTorch代码解读</h1><p><a href="https://blog.csdn.net/u014380165/article/details/79058147" target="_blank" rel="noopener">https://blog.csdn.net/u014380165/article/details/79058147</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/31/论文代码阅读/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-record-of-github" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -197,7 +260,7 @@
 <p>以及如果倒退回了旧的版本，想要用原来的比较新的版本的话，版本号依然是可以使用的，但是查找会比较麻烦，可以使用下式，看到的是自己版本切换的顺序。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reflog</span><br></pre></td></tr></table></figure>
 
-<h1 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h1><p>所谓进阶，对我来说就是指的branch和merge，首先是创建一个新的branch</p>
+<h1 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h1><h2 id="创建和合并"><a href="#创建和合并" class="headerlink" title="创建和合并"></a>创建和合并</h2><p>所谓进阶，对我来说就是指的branch和merge，首先是创建一个新的branch</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch BRANCH_NAME</span><br></pre></td></tr></table></figure>
 
 <p>然后是如何切换分支</p>
@@ -211,6 +274,20 @@
 
 <p>这里需要注意一件事情，首先是上边的merge指的是将后面的BRANCH_NAME里面的改动合并到当前的分支。一般情况下第一反应，我们使用这样的分支是因为我们需要在主要的工作中额外分开一个分支对自己想要进行修改的部分进行修正，修正结束后可以合并到master里面。但是并不一定只有一个人在做类似的操作，可能会出现在我们希望把自己的branch合并到master里面的时候，master里面已经有了一次更新。</p>
 <p>在上述情景中，问题出在两次修改是否冲突上。比如如果同时修改了其中的某一行，那么git表示不知道该听谁的，所以会报错让我们先修改一下再说。但是如果没有的话，就会自动进行合并。听起来还是不错的，以后再进行相应的验证。</p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><p>不过上面的命令并不符合我们的工作流，所以这里解决一下工作流的问题：</p>
+<p><a href="https://blog.csdn.net/zhangxiaoyang0/article/details/79286825" target="_blank" rel="noopener">https://blog.csdn.net/zhangxiaoyang0/article/details/79286825</a></p>
+<p>上面的链接是有着正确的工作流的方法。</p>
+<p>下面简单介绍一下我觉得好用的方法。</p>
+<p>首先是确认远程分支和本地分支：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git branch -r // 查看远程分支</span><br><span class="line">git branch -a // 查看本地和远程所有的分支</span><br><span class="line">git branch    // 查看本地分支</span><br></pre></td></tr></table></figure>
+
+<p>明确一种关系，也就是一种映射关系，如果都明确了映射关系，那么拉取的时候就可以直接使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure>
+
+<p>来进行简化了</p>
+<p>映射关系相关的命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git branch -vv 			   //查看映射关系</span><br><span class="line">git branch -u origin/xxx   //给当前的分支建立到xxx的映射</span><br><span class="line">git branch --set-upstream-to origin/xxx //同上</span><br><span class="line">git branch --unset-upstream //解除关系</span><br><span class="line">git checkout -b 本地分支名x origin/远程分支名x //创建分支并切换到分支并且顺便建立了映射关系</span><br></pre></td></tr></table></figure>
+
 
       
 
